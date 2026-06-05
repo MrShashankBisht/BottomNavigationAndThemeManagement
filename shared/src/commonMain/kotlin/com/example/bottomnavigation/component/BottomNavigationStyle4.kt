@@ -34,7 +34,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.bottomnavigation.SimpleNavigationScreens
+import com.example.bottomnavigation.ui.theme.SimpleNavigationScreens
 import com.example.bottomnavigation.ui.theme.AppTheme
 import org.jetbrains.compose.resources.painterResource
 

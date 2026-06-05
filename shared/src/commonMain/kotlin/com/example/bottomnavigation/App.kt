@@ -12,6 +12,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.bottomnavigation.component.AppThemeWrapper
 import com.example.bottomnavigation.component.BottomNavigationStyle4
 import com.example.bottomnavigation.ui.theme.CommonScreen
+import com.example.bottomnavigation.ui.theme.SimpleNavigationScreens
 
 @Composable
 @Preview
