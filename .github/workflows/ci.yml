@@ -1,0 +1,64 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  android:
+    name: Android Build & Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: gradle
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Run Lint
+        run: ./gradlew lintDebug
+
+      - name: Run Tests
+        # This will run androidApp unit tests and shared module tests compatible with Linux
+        run: ./gradlew :androidApp:testDebugUnitTest :shared:testAndroidHostTest
+
+      - name: Build Debug APK
+        run: ./gradlew :androidApp:assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-debug-apk
+          path: androidApp/build/outputs/apk/debug/*.apk
+
+  ios:
+    name: iOS Build & Test
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: gradle
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Run Shared Module iOS Tests
+        run: ./gradlew :shared:iosSimulatorArm64Test
+
+      - name: Build Shared Framework for iOS
+        run: ./gradlew :shared:linkReleaseFrameworkIosArm64

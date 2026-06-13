@@ -1,12 +1,7 @@
 package com.example.bottomnavigation.ui.theme
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -23,7 +18,7 @@ data class AppColors(
     val navSelectedIcon: Color,
     val navUnselectedIcon: Color,
     val isDark: Boolean,
-    val navigation3IconBackgroundColor : Color
+    val navigation3IconBackgroundColor: Color
 )
 
 // 2. Typography Token Contract
@@ -68,7 +63,6 @@ val DarkAppColors = AppColors(
     isDark = true,
     navigation3IconBackgroundColor = Color(0x37ffffff)
 )
-
 
 
 // Create a globally unified theme anchor object
